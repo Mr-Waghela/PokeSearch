@@ -38,4 +38,6 @@ img{width: 100%;height: auto;}
 #details p{margin-bottom: 5px}
 @media only screen and (max-width: 599px){
     .inout,.display-all,#allListings li{width: 100%;}
+    .darkmode-toggle,.darkmode-layer--button{right: 0 !important}
+    .fixed-pointer{width: 50px}
 }
