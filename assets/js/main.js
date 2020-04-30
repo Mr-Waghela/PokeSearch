@@ -6,15 +6,12 @@
     advice = document.querySelector('#limit');
     var totalPokemon;
 
-    window.addEventListener('load', (event) => {
-        pokelimit.onfocus = function(){
-            listItems.innerHTML = '';
-            detailsList.innerHTML = '';
-            document.querySelector("#back").style.visibility = 'hidden';
-            advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX, TOTAL NUMBER OF POKEMON DATA STORED IS 964...SO DON'T BE TEAM ROCKET AND SEARCH BETWEEN 1-964"
-        }
-    });
-
+    pokelimit.onfocus = function(){
+        clear();
+    } 
+    document.querySelector('#clear').onclick = function(){
+        clear();
+    } 
 
     document.querySelector('#dspPoke').onclick = function(){
         catchemAll(pokelimit.value);
@@ -45,6 +42,13 @@
         else{
             advice.innerHTML = "OOPS!! GUESS WE RAN OUT OF POKEMON'S OVER HERE, HERE A ADVICE TRY NUMBERS BETWEEN 1 - 695";
         }
+    }
+
+    function clear(){
+        listItems.innerHTML = '';
+        detailsList.innerHTML = '';
+        document.querySelector("#back").style.visibility = 'hidden';
+        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX, TOTAL NUMBER OF POKEMON DATA STORED IS 964...SO DON'T BE TEAM ROCKET AND SEARCH BETWEEN 1-964"
     }
 
     

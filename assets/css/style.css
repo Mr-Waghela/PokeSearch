@@ -5,7 +5,7 @@ body{font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neu
 .inout,.display-all{width: 100%}
 .inout{text-align: center;}
 #pokeVal{height: 30px;width: 200px;outline: none;border-radius: 5px;box-shadow: chartreuse;padding: 5px;padding-left: 10px;}
-#dspPoke,#back,#pokeofday{background-color: #000;border-radius: 5px;color: #fff;height: 30px;cursor: pointer;padding: 5px 10px;}
+#dspPoke,#back,#pokeofday,#clear{background-color: #000;border-radius: 5px;color: #fff;height: 30px;cursor: pointer;padding: 5px 10px;}
 .display-all{position: relative;}
 .fixed-wrap{position: absolute;left: 0;top: 0;z-index: 1}
 #allListings,.main,.display-all{display: flex;justify-content: space-between;flex-wrap: wrap;}
