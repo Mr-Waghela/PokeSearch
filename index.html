@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pokemon-GottaCatchEmAll</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="fixed-pointer">
+                <p>Try Dark Mode</p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+            </div>
+            <div class="overlay">
+                <div class="pokedata">
+                </div>
+            </div>
+            <section class="main">
+                <div class="inout">
+                    <div class="advice" id="limit">
+                       <p>ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX, TOTAL NUMBER OF POKEMON DATA STORED ID 964...SO DON'T BE TEAM ROCKET AND SEARCH BETWEEN 1-964</p>
+                   </div>
+                   <div class="input-fields">
+                        <input type="text" placeholder="Total Pokemon to display" id="pokeVal" value=''>
+                        <input type="button" id="dspPoke" value="Search">
+                        <input type="button" id="pokeofday" value="pokemon of day">
+                   </div>
+                </div>
+                <div class="display-all">
+                    <div class="fixed-wrap"><input type="button" id="back" value="back"></div>    
+                    <ul id="allListings"></ul>
+                    <div id="details"></div>
+                </div>
+            </section>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
+        <script src="assets/js/main.js" async defer></script>
+        <script>
+        new Darkmode().showWidget();
+        </script>
+    </body>
+</html>
