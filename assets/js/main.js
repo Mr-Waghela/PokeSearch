@@ -10,6 +10,7 @@
         pokelimit.onfocus = function(){
             listItems.innerHTML = '';
             detailsList.innerHTML = '';
+            document.querySelector("#back").style.visibility = 'hidden';
             advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX, TOTAL NUMBER OF POKEMON DATA STORED IS 964...SO DON'T BE TEAM ROCKET AND SEARCH BETWEEN 1-964"
         }
     });
@@ -102,16 +103,17 @@
                 // Do stuff with the JSON.
                 document.querySelector('.overlay').style.display = 'block';
                 document.querySelector("#back").style.visibility = 'hidden';
+                detailsList.innerHTML = '';
+
                 // .style.display = 'block';
                 totalPokemon = responseAsJson1.results;
                 newInd = Math.floor((Math.random() * 100) + 1);
                 var pokemonName = responseAsJson1.results[newInd].name;
                 var pokeUrl = responseAsJson1.results[newInd].url;
-                console.log(pokeUrl);
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
                 imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
-                var str1 = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img src="'+ imgPath +'"</a></li>';
+                str1 = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img src="'+ imgPath +'"</a></li>';
                 document.querySelector('.pokedata').innerHTML = str1;
                 })
             .catch(function(error) {
