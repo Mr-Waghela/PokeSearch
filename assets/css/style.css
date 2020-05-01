@@ -24,7 +24,7 @@ img{width: 100%;height: auto;}
 #back{display: inline-block;visibility: hidden;}
 .overlay{position: fixed;left: 0;right: 0;top: 0;bottom: 0;background: #000;display: none;z-index: 10}
 .overlay p{font-size: 2rem;color: rgb(175, 175, 41);text-align: center;padding-top: 10%;}
-.pokedata{height: 400px;width: 400px;background-color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);opacity: 1;border-radius: 50%}
+.pokedata{max-height: 400px;max-width: 400px;background-color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);opacity: 1;border-radius: 50%}
 .darkmode-toggle{z-index: 10}
 .darkmode--activated .advice,.darkmode--activated #allListings h3,.darkmode--activated #details{color: #fff}
 .fixed-pointer{width: 100px;position: fixed;right: 0;bottom: 65px;text-align: center;z-index: 10}
@@ -54,6 +54,9 @@ img{width: 100%;height: auto;}
 }
 @media only screen and (max-width: 599px){
 	html{font-size: 50%}
+	.input-fields{display: flex;flex-wrap: wrap;justify-content: space-between;}
+	#pokeVal{width: 100%;margin: 0 50px 20px}
+	#dspPoke, #back, #pokeofday, #clear{width: 30%}
     .inout,.display-all,#allListings li{width: 100%;}
     #allListings li{width: 45%}
     .fixed-pointer{background-color: #000;color: #fff;width: 35px}
