@@ -117,8 +117,9 @@
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
                 imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
-                str1 = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img src="'+ imgPath +'"</a></li>';
+                str1 = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a></li>';
                 document.querySelector('.pokedata').innerHTML = str1;
+                lazy();
                 })
             .catch(function(error) {
                 document.write('Looks like there was a problem: \n', error);
@@ -145,14 +146,16 @@
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
                 imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
-                str = str + '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img src="'+ imgPath +'"</a><h3>'+ pokemonName +' </h3> </li>';
+                str = str + '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a><h3>'+ pokemonName +' </h3> </li>';
             }
             listItems.innerHTML = str;
+            lazy();
         }
     }
 
 
     function displayAbility(pokeDetails){
+        console.log(pokeDetails)
         var Pokename = pokeDetails.name;
         var ability = '';
         var Pokemove = '';
@@ -174,7 +177,8 @@
         }
 
         listItems.innerHTML = '';
-        detailsList.innerHTML ='<div class="img-wrap"><img src="'+ imgPath +'"></div><h3>name :  '+ Pokename +' </h3><div class="detail-wrap"><div class="pability"><h4>Abilities</h4>'+ ability+'</div><div class="pheight"><h4>Height</h4><p>'+ pokeDetails.height+' </p></div><div class="pType"><h4>Type</h4>'+ Ptype +'</div><div class="pmove"><h4>Top Moves</h4>'+ Pokemove +'</div></div>';
+        detailsList.innerHTML ='<div class="img-wrap"><img class="lozad" data-src="'+ imgPath +'" src=""/></div><h3>name :  '+ Pokename +' </h3><div class="detail-wrap"><div class="pability"><h4>Abilities</h4>'+ ability+'</div><div class="pheight"><h4>Height</h4><p>'+ pokeDetails.height+' </p></div><div class="pType"><h4>Type</h4>'+ Ptype +'</div><div class="pmove"><h4>Top Moves</h4>'+ Pokemove +'</div></div>';
+        lazy();
 
     };
 
@@ -195,3 +199,14 @@
         }
     }
     
+    function lazy(){
+    lozad('.lozad', {
+        load: function(el) {
+            el.src = 'assets/images/preloader.gif';
+            el.onload = function() {
+                el.src = el.dataset.src;
+                el.classList.add('fade')
+            }
+        }
+    }).observe()
+    }    

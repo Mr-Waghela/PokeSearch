@@ -2,15 +2,17 @@
 html{font-size: 62.5%;height: 100%;}
 body{font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;font-size: 1.6rem;height: 100%;}
 .container{max-width: 928px;margin: 0 auto;padding: 0 20px;position: relative;height: 100%;}
+.logo {text-align: center;margin-bottom: 20px}
+.logo a{font-size: 0;background: url(../images/logo.png) center no-repeat;background-size: cover;height: 50px;width: 50px;display: inline-block;}
 .inout,.display-all{width: 100%}
 .inout{text-align: center;}
 #pokeVal{height: 30px;width: 200px;outline: none;border-radius: 5px;box-shadow: chartreuse;padding: 5px;padding-left: 10px;}
 #dspPoke,#back,#pokeofday,#clear{background-color: #000;border-radius: 5px;color: #fff;height: 30px;cursor: pointer;padding: 5px 10px;}
 .display-all{position: relative;}
 .fixed-wrap{position: absolute;left: 0;top: 0;z-index: 1}
-#allListings,.main,.display-all{display: flex;justify-content: space-between;flex-wrap: wrap;}
+#allListings,.main,.display-all{display: flex;justify-content: space-between;flex-wrap: wrap;width: 100%}
 #allListings a{display: inline-block;}
-#allListings li{width: 30%;margin-top: 20px;}
+#allListings li{width: 24%;margin-top: 20px;}
 #allListings h3{font-size: 1.8rem;line-height: 1.2;color: rgb(47, 46, 46);text-align: center;text-transform: uppercase;}
 img{width: 100%;height: auto;}
 .input-fields{margin-bottom: 20px}
@@ -25,7 +27,7 @@ img{width: 100%;height: auto;}
 .pokedata{height: 400px;width: 400px;background-color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);opacity: 1;border-radius: 50%}
 .darkmode-toggle{z-index: 10}
 .darkmode--activated .advice,.darkmode--activated #allListings h3,.darkmode--activated #details{color: #fff}
-.fixed-pointer{width: 100px;position: fixed;right: 0;bottom: 65px;text-align: center;}
+.fixed-pointer{width: 100px;position: fixed;right: 0;bottom: 65px;text-align: center;z-index: 10}
 .pokedata img{
   animation: pulse 1.5s infinite ease-in-out alternate;
 }
@@ -36,8 +38,26 @@ img{width: 100%;height: auto;}
 .detail-wrap{display: flex;flex-wrap: wrap;justify-content: space-evenly;width: 100%}
 #details h4{font-size: 2rem;margin-bottom: 10px}
 #details p{margin-bottom: 5px}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media only screen and (max-width: 599px){
+	html{font-size: 50%}
     .inout,.display-all,#allListings li{width: 100%;}
-    .darkmode-toggle,.darkmode-layer--button{right: 0 !important}
-    .fixed-pointer{width: 50px}
+    #allListings li{width: 45%}
+    .fixed-pointer{background-color: #000;color: #fff;width: 35px}
+
+    .fill{fill: #fff}
+    .darkmode-toggle,.darkmode-layer--button{right: 5px !important}
 }
