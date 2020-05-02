@@ -30,13 +30,15 @@
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="assets/css/style.css?v=1.3 ">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css?v=1.4 ">
     </head>
     <body>
         <div class="container">
             <h1 class="logo"><a href="https://chirag7594.github.io/Pokedex/">pokedex</a></h1>
             <div class="fixed-pointer">
-                <p>Try Dark Mode</p>
+                <p class="dark">Try Dark Mode</p>
+                <p class="light">Try light Mode</p>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path class="fill" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
             </div>
             <div class="overlay">
@@ -46,17 +48,22 @@
             <section class="main">
                 <div class="inout">
                     <div class="advice" id="limit">
-                       <p>ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX, TOTAL NUMBER OF POKEMON DATA STORED IS 964...SO DON'T BE TEAM ROCKET AND SEARCH BETWEEN 1-964</p>
+                       <p>ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br>TOTAL NUMBER OF POKEMON DATA STORED IS 964...
+                        <br>SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964</p>
+                   </div>
+                   <div class="btn-wrap">
+                      <button data-hover="Lets do this!" id="pokeofday"><div>Suprise Me!</div></button>
                    </div>
                    <div class="input-fields">
-                        <input type="number" placeholder="Total Pokemon to display" id="pokeVal" value=''>
-                        <input type="button" id="dspPoke" value="Search">
-                        <input type="button" id="pokeofday" value="Suprise me">
-                        <input type="button" id="clear" value="Clear">
+                        <input type="number" id="pokeVal" placeholder="Total Pokemon to display" /><span class="highlight"></span><span class="bar"></span>
+                        <div id="dspPoke">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="18px" height="18px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                        </div>
                    </div>
                 </div>
                 <div class="display-all">
-                    <div class="fixed-wrap"><input type="button" id="back" value="back"></div> 
+                    <div class="fixed-wrap">
+                        <div id="back">back</div>
                     <ul id="allListings"></ul>
                     <div id="details">
                     </div>
@@ -66,8 +73,5 @@
         <script src="assets/js/lozad.js"></script>        
         <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
         <script src="assets/js/main.js" async defer></script>
-        <script>
-        new Darkmode().showWidget();
-        </script>
     </body>
 </html>

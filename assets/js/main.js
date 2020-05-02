@@ -9,10 +9,12 @@
     pokelimit.onfocus = function(){
         clear();
     } 
-    document.querySelector('#clear').onclick = function(){
-        clear();
-    } 
 
+    pokelimit.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            catchemAll(pokelimit.value);
+        }
+    });
     document.querySelector('#dspPoke').onclick = function(){
         catchemAll(pokelimit.value);
     }
@@ -24,7 +26,6 @@
         pokemonOfDay('https://pokeapi.co/api/v2/pokemon?limit=100');
     }
     document.querySelector('.overlay').onclick = function(){
-        // pokemonOfDay('https://pokeapi.co/api/v2/pokemon?limit=100');
         this.style.display = 'none';
     }
 
@@ -32,15 +33,15 @@
         str = '';
         detailsList.innerHTML = '';
         if(lim == '' && lim == 0){
-            advice.innerHTML = 'please enter limit to display pokemon';
+            advice.innerHTML = "<strong> <i> Jessie, James, and Meowth </i></strong><br> Don't act smart, You won't get what you looking for here, Enter number between the limits";
         }
         else if(lim < 965){
-            advice.innerHTML = "THERE YOU GO POKEMON MASTER, GOTTA CATCH EM ALL";
+            advice.innerHTML = "THERE YOU GO POKEMON MASTER,<strong> <i>  GOTTA CATCH EM ALL </i></strong>";
             feturl = 'https://pokeapi.co/api/v2/pokemon?limit='+ lim;
             fetAllPokemon(feturl);
         }
         else{
-            advice.innerHTML = "OOPS!! GUESS WE RAN OUT OF POKEMON'S OVER HERE, HERE A ADVICE TRY NUMBERS BETWEEN 1 - 695";
+            advice.innerHTML = "OOPS!! <br> GUESS WE RAN OUT OF POKEMON'S OVER HERE,<br> HERE A ADVICE TRY NUMBERS BETWEEN 1 - 695";
         }
     }
 
@@ -48,7 +49,7 @@
         listItems.innerHTML = '';
         detailsList.innerHTML = '';
         document.querySelector("#back").style.visibility = 'hidden';
-        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX, TOTAL NUMBER OF POKEMON DATA STORED IS 964...SO DON'T BE TEAM ROCKET AND SEARCH BETWEEN 1-964"
+        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br> TOTAL NUMBER OF POKEMON DATA STORED IS 964... <br> SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964"
     }
 
     
@@ -210,3 +211,5 @@
         }
     }).observe()
     }    
+
+    new Darkmode().showWidget();
