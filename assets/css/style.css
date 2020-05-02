@@ -40,6 +40,7 @@ img{width: 100%;height: auto;}
 #pokeofday:hover div{opacity: 0; transform: translate(100%,0)}
 #pokeofday div{text-transform: uppercase;letter-spacing: 3px;font-weight: bold;font-size: .8em;transition: all .3s ease-in-out;color: #000}
 input{background: none;color: #c6c6c6;font-size: 1.8rem;padding: 10px 10px 10px 5px;display: block;border: none;border-radius: 0;border-bottom: 1px solid #c6c6c6;}
+input::placeholder{color: #000}
 input:focus ~ .bar:before{width: 100%;}
 input:focus{outline: none;}
 .valid{top: -14px;font-size: 1.2rem;color: #000;}
@@ -57,7 +58,7 @@ input:focus{outline: none;}
 .darkmode--activated .fill{fill: #fff}
 .darkmode--activated  input:focus ~ label{color: #fff;}
 .darkmode-toggle{z-index: 10}
-.darkmode--activated .advice,.darkmode--activated #allListings h3,.darkmode--activated #details{color: #fff}
+.darkmode--activated .advice,.darkmode--activated #allListings h3,.darkmode--activated #details,.darkmode--activated #back,.darkmode--activated input::placeholder{color: #fff}
 @keyframes pulse {
   from { transform: scale(1); }
   to { transform: scale(1.2); }
@@ -70,18 +71,18 @@ input:focus{outline: none;}
 
 @keyframes fade {
   from {
-    opacity: 0;
+	opacity: 0;
   }
   to {
-    opacity: 1;
+	opacity: 1;
   }
 }
 @media only screen and (max-width: 599px){
 	html{font-size: 50%}
 	#pokeVal{width: 100%;}
 	.input-fields{margin: 0 20px 20px;}
-    .inout,.display-all,#allListings li{width: 100%;}
-    #allListings li{width: 45%}
-    .fixed-pointer{width: 35px}
-    .darkmode-toggle,.darkmode-layer--button{right: 5px !important}
+	.inout,.display-all,#allListings li{width: 100%;}
+	#allListings li{width: 45%}
+	.fixed-pointer{width: 35px}
+	.darkmode-toggle,.darkmode-layer--button{right: 5px !important}
 }

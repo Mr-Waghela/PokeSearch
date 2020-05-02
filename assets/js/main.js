@@ -29,6 +29,13 @@
         this.style.display = 'none';
     }
 
+    function clear(){
+        listItems.innerHTML = '';
+        detailsList.innerHTML = '';
+        document.querySelector("#back").style.visibility = 'hidden';
+        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br> TOTAL NUMBER OF POKEMON DATA STORED IS 964... <br> SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964"
+    }
+
     function catchemAll(lim){
         str = '';
         detailsList.innerHTML = '';
@@ -44,14 +51,6 @@
             advice.innerHTML = "OOPS!! <br> GUESS WE RAN OUT OF POKEMON'S OVER HERE,<br> HERE A ADVICE TRY NUMBERS BETWEEN 1 - 695";
         }
     }
-
-    function clear(){
-        listItems.innerHTML = '';
-        detailsList.innerHTML = '';
-        document.querySelector("#back").style.visibility = 'hidden';
-        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br> TOTAL NUMBER OF POKEMON DATA STORED IS 964... <br> SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964"
-    }
-
     
     function fetAllPokemon(url){
         if(url){
@@ -65,7 +64,7 @@
                 })
             .then(function(responseAsJson) {
                 // Do stuff with the JSON.
-                displayPokemon(responseAsJson);
+                createListing(responseAsJson);
                 })
             .catch(function(error) {
                 document.write('Looks like there was a problem: \n', error);
@@ -127,17 +126,10 @@
             });
         }
     }
-    
 
-    function displayPokemon(pokemonData){
+    function createListing(pokemonData){
         if(pokemonData){
             totalPokemon = pokemonData.results;
-            var str = createListing(totalPokemon);
-        }
-    }
-
-    function createListing(totalPokemon){
-        if(totalPokemon){
             var myArr = [];
             for (let index in totalPokemon){
                 randomNumber(myArr);
@@ -156,7 +148,6 @@
 
 
     function displayAbility(pokeDetails){
-        console.log(pokeDetails)
         var Pokename = pokeDetails.name;
         var ability = '';
         var Pokemove = '';
