@@ -1,44 +1,53 @@
 *{margin: 0;padding: 0;box-sizing: border-box;list-style: none;outline: none;text-decoration: none;}
 html{font-size: 62.5%;height: 100%;}
 body{font-family: 'Roboto',-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;font-size: 1.6rem;height: 100%;}
-.container{max-width: 928px;margin: 0 auto;padding: 0 20px;position: relative;height: 100%;}
-.logo {text-align: center;margin-bottom: 20px}
-.logo a{font-size: 0;background: url(../images/logo.png) center no-repeat;background-size: cover;height: 50px;width: 50px;display: inline-block;}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+
+/* Firefox */
+input[type=number] {-moz-appearance: textfield;}
+header{display: flex;flex-wrap: wrap;justify-content: space-between;height: 60px;padding: 0 40px;align-items: center;margin-bottom: 20px}
+.wrapper{display: flex;flex-direction: column;justify-content: space-between;;min-height: 100%}
+.container{max-width: 1028px;margin: 0 auto;padding: 0 20px;position: relative;width: 100%}
+.logo {text-align: center;position: relative;}
+.logo a{background: url(../images/logo.png) center no-repeat;background-size: cover;height: 50px;width: 50px;display: inline-block;color: transparent;}
 .inout,.display-all{width: 100%}
+.display-all img{min-height: 240px}
 .inout{text-align: center;}
-.input-fields{position: relative;margin: 0 100px 20px}
-#pokeVal{height: 30px;width: 100%;outline: none;border-radius: 5px;padding: 5px 50px 5px 10px;position: relative;}
-#dspPoke{background-color: #000;height: 30px;line-height: 36px;text-align: center;width: 50px;border-radius: 3px;cursor: pointer;position: absolute;right: 0;top: 0}
-.btn-wrap{display: block;text-align: center;margin-bottom: 30px}
-.display-all{position: relative;}
-.fixed-wrap{position: absolute;left: 0;top: 0;z-index: 1}
-#allListings,.main,.display-all{display: flex;justify-content: space-between;flex-wrap: wrap;width: 100%}
+.input-fields{position: relative;margin: 0 50px 20px}
+#pokeVal,#searchByname{height: 30px;width: 100%;outline: none;padding: 5px 30px 5px 10px;position: relative;color: #e00712;font-weight: bold}
+#searchByname:focus {width: 100%;transition: 1s}
+#dspPoke{cursor: pointer;position: absolute;right: 0;top: 0;height: 30px;line-height: 40px}
+.btn-wrap{display: block;text-align: center;}
+.display-all{position: relative;margin-top: 20px}
+#allListings{display: flex;justify-content: space-evenly;flex-wrap: wrap;width: 100%}
 #allListings a{display: inline-block;}
 #allListings li{width: 24%;margin-top: 20px;}
 #allListings h3{font-size: 1.8rem;line-height: 1.2;color: rgb(47, 46, 46);text-align: center;text-transform: uppercase;}
 img{width: 100%;height: auto;}
 .advice{margin-bottom: 20px;font-size: 2rem;min-height: 54px;text-transform: capitalize;}
 #details{display: flex;justify-content: space-around;flex-wrap: wrap;padding-bottom: 50px;text-transform: capitalize;}
-#details .img-wrap{width: 100%;overflow: hidden;}
+#details .img-wrap{width: 30%;overflow: hidden;}
 #details h3{font-size: 3rem;line-height: 1.5;text-transform: uppercase;width: 100%;text-align: center;}
-.pability,.pheight,.pType,.pmove{margin-top: 20px;}
+.pability,.pheight,.pType,.pmove{margin-top: 20px;width: 100%}
 #back{display: inline-block;visibility: hidden;cursor: pointer;}
 .overlay{position: fixed;left: 0;right: 0;top: 0;bottom: 0;background: #000;display: none;z-index: 10}
 .overlay p{font-size: 2rem;color: rgb(175, 175, 41);text-align: center;padding-top: 10%;}
 .pokedata{max-height: 400px;max-width: 400px;background-color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);opacity: 1;border-radius: 50%}
-.fixed-pointer{width: 100px;position: fixed;right: 0;bottom: 65px;text-align: center;z-index: 10}
-.detail-wrap{display: flex;flex-wrap: wrap;justify-content: space-evenly;width: 100%}
-#details h4{font-size: 2rem;margin-bottom: 10px}
-#details p{margin-bottom: 5px}
+.fixed-pointer{width: 100px;position: fixed;right: 0;bottom: 65px;text-align: center;z-index: 10;color: #000;bottom: 90px}
+.detail-wrap{display: flex;flex-wrap: wrap;justify-content: space-evenly;width: 65%}
+#details h4{font-size: 2rem;margin-bottom: 10px;padding: 5px 10px}
+#details p{margin-bottom: 5px;padding: 5px 10px}
 .darkmode--activated .dark{display: none}
 .darkmode--activated .light{display: block;}
 .light{display: none}
 #pokeofday:hover{cursor: pointer}
-#pokeofday {background: #fff; outline: none;position: relative;border: 2px solid #111;padding: 15px 100px;overflow: hidden;}
+#pokeofday {background: #e00712; outline: none;position: relative;border: 2px solid #111;padding: 15px 100px;overflow: hidden;color: #fff}
 #pokeofday:hover:before{opacity: 1; transform: translate(0,0);}
 #pokeofday:before{content: attr(data-hover);position: absolute;top: 15px; left: 0;width: 100%;text-transform: uppercase;letter-spacing: 3px;font-weight:bold;font-size: .8em;  opacity: 0;transform: translate(-100%,0);transition: all .3s ease-in-out;}
 #pokeofday:hover div{opacity: 0; transform: translate(100%,0)}
-#pokeofday div{text-transform: uppercase;letter-spacing: 3px;font-weight: bold;font-size: .8em;transition: all .3s ease-in-out;color: #000}
+#pokeofday div{text-transform: uppercase;letter-spacing: 3px;font-weight: bold;font-size: .8em;transition: all .3s ease-in-out;color: #fff}
 input{background: none;color: #c6c6c6;font-size: 1.8rem;padding: 10px 10px 10px 5px;display: block;border: none;border-radius: 0;border-bottom: 1px solid #c6c6c6;}
 input::placeholder{color: #000}
 input:focus ~ .bar:before{width: 100%;}
@@ -49,16 +58,35 @@ input:focus{outline: none;}
   background: #000;-webkit-transition: 300ms ease all;transition: 300ms ease all;left: 0%;}
 
 .pokedata img{animation: pulse 1.5s infinite ease-in-out alternate;}
-.fixed-pointer{color: #000;}
 .darkmode--activated .fixed-pointer{color: #fff}
-.darkmode--activated #dspPoke,.darkmode--activated .bar:before {background-color: #fff;}
-.darkmode--activated #dspPoke svg{fill: #000}
+.darkmode--activated .bar:before {background-color: #fff;}
+.darkmode--activated #dspPoke svg{fill: #fff}
 .darkmode--activated #pokeofday{background-color: #000;border-color: #fff}
 .darkmode--activated #pokeofday div,.darkmode--activated #pokeofday:before{color: #fff}
 .darkmode--activated .fill{fill: #fff}
 .darkmode--activated  input:focus ~ label{color: #fff;}
 .darkmode-toggle{z-index: 10}
 .darkmode--activated .advice,.darkmode--activated #allListings h3,.darkmode--activated #details,.darkmode--activated #back,.darkmode--activated input::placeholder{color: #fff}
+.darkmode-toggle,.darkmode-layer--button{bottom: 65px !important}
+footer{position: relative;width: 100%}
+.footer-img{position: absolute;left: 50%;top: 50%;height: 30px;width: 30px;transform: translate(-50%,-50%);background: url('../images/footer.jpg') center no-repeat;background-size: contain;}
+.f-top{background: #e00712;height: 30px;border-bottom: 5px solid #1d1d1b;border-top: 1px solid #dddddd}
+.f-bottom{background: #fff;height: 30px;border-bottom: 1px solid #dddddd;border-top: 5px solid #1d1d1b}
+
+.nametxt{position: relative;text-align: left;margin: 0 50px}
+
+#datalist{display: block;position: absolute;left: 0;right: 0;max-height: 210px;overflow: hidden;z-index: 5;}
+#datalist li{border-bottom: 1px solid #dddddd;width: 100%;color: #999;font-size: 1.6rem;display: block;height: 35px;line-height: 35px;cursor: pointer;padding: 0 10px;background-color: #fff}
+
+.input-fields{display: none}
+.showAll,.showbyname{font-size: 1.6rem;color: #000;border: 1px solid #000;cursor: pointer;height: 30px;line-height: 30px;text-align: center;margin: 10px 50px}
+.showbyname{display: none}
+.next-page{display: none;height: 30px;width: 60px;cursor: pointer;text-align: left;color: #fff;line-height: 30px;margin-left: 10px;margin-top: 20px;background:#e00712 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOBAMAAADgeEClAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAACdQTFRF////////////AAAA////////////////////////////////////YB6q1QAAAA10Uk5TMI8QAJD/z9C/76BwQA4xvQUAAABCSURBVHicDcahDYAwAEXBh+wcFbWEZ7FsQAhBdoeOwgSdgf345nIsVTl6aFeVbXQxxRRtdygnru/E8kgiiXwz7OoP3mgOuSxsgKMAAAAASUVORK5CYII=') 45px center no-repeat;padding-left: 10px}
+
+.accordion{margin-bottom: 0;padding: 20px;border-bottom:1px solid #dddddd;cursor: pointer;}
+.desc{display: none}
+.active{display: block;border: none}
+.active ~ .desc{border-bottom: 1px solid #dddddd}
 @keyframes pulse {
   from { transform: scale(1); }
   to { transform: scale(1.2); }
@@ -79,10 +107,16 @@ input:focus{outline: none;}
 }
 @media only screen and (max-width: 599px){
 	html{font-size: 50%}
-	#pokeVal{width: 100%;}
-	.input-fields{margin: 0 20px 20px;}
+	header{height: auto;flex-direction: column;}
+	.logo{margin-top: 10px}
+	.showAll, .showbyname,.nametxt{margin-left: 0;margin-right: 0}
+	.btn-wrap{margin-top: 20px}
+	#pokeVal,#searchByname{width: 100%;}
+	.input-fields{margin: 0 0 20px;}
 	.inout,.display-all,#allListings li{width: 100%;}
 	#allListings li{width: 45%}
 	.fixed-pointer{width: 35px}
-	.darkmode-toggle,.darkmode-layer--button{right: 5px !important}
+	.darkmode-toggle,.darkmode-layer--button{right: 5px !important;}
+	#details .img-wrap,.detail-wrap{width: 100%}
+
 }

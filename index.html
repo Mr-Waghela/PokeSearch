@@ -12,63 +12,65 @@
         <meta property="og:title" content="pokedex.info" />
         <meta property="og:description" content="Pokemon | Lets catchem all" />
         <meta property="og:image" content="assets/images/logo.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="assets/images/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-        <link rel="manifest" href="assets/images/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-n.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/style.css?v=1.4 ">
+        <link rel="stylesheet" href="assets/css/style.css?v=1.54">
     </head>
     <body>
-        <div class="container">
-            <h1 class="logo"><a href="https://chirag7594.github.io/Pokedex/">pokedex</a></h1>
-            <div class="fixed-pointer">
-                <p class="dark">Try Dark Mode</p>
-                <p class="light">Try light Mode</p>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path class="fill" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
-            </div>
-            <div class="overlay">
-                <div class="pokedata">
-                </div>
-            </div>
-            <section class="main">
-                <div class="inout">
-                    <div class="advice" id="limit">
-                       <p>ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br>TOTAL NUMBER OF POKEMON DATA STORED IS 964...
-                        <br>SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964</p>
-                   </div>
-                   <div class="btn-wrap">
+        <div class="wrapper">
+            <header>
+                <h1 class="logo"><a href="https://chirag7594.github.io/Pokedex/">pokedex</a></h1>
+                <div class="btn-wrap">
                       <button data-hover="Lets do this!" id="pokeofday"><div>Suprise Me!</div></button>
-                   </div>
-                   <div class="input-fields">
-                        <input type="number" id="pokeVal" placeholder="Total Pokemon to display" /><span class="highlight"></span><span class="bar"></span>
-                        <div id="dspPoke">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="18px" height="18px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-                        </div>
-                   </div>
                 </div>
-                <div class="display-all">
-                    <div class="fixed-wrap">
-                        <div id="back">back</div>
-                    <ul id="allListings"></ul>
-                    <div id="details">
+            </header>
+            <div class="container">
+                <div class="fixed-pointer">
+                    <p class="dark">Try Dark Mode</p>
+                    <p class="light">Try light Mode</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path class="fill" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+                </div>
+                <div class="overlay">
+                    <div class="pokedata">
                     </div>
                 </div>
-            </section>
+                <section class="main">
+                    <div class="inout">
+                        <div class="advice" id="limit">
+                           <p>ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br>TOTAL NUMBER OF POKEMON DATA STORED IS 964...
+                            <br>SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964</p>
+                       </div>
+                        <div class="showAll">Show all Pokemon</div>
+                        <div class="showbyname">Search by Name</div>
+                        <div class="nametxt">
+                            <input type="text" placeholder="Search By Name" onkeyup="ac(this.value)" id="searchByname" /><span class="highlight"></span><span class="bar"></span>
+                            <ul id="datalist"></ul>
+                        </div> 
+                       <div class="input-fields">
+                            <input type="number" id="pokeVal" placeholder="Total Pokemon to display" /><span class="highlight"></span><span class="bar"></span>
+                            <div id="dspPoke">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000" width="18px" height="18px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                            </div>
+                       </div> 
+                    </div>
+                    <div class="display-all">
+                        <div class="fixed-wrap">
+                            <div id="back">back</div>
+                        </div>
+                        <ul id="allListings">
+                        </ul>
+                        <!-- <div class="next-page">Next</div> -->
+                        <div id="details">
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <footer>
+                <div class="footer-img"></div>
+                <div class="f-top"></div>
+                <div class="f-bottom"></div>
+            </footer>
         </div>
         <script src="assets/js/lozad.js"></script>        
         <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>

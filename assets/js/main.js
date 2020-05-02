@@ -1,58 +1,147 @@
-    var str = '';
+    var displayStr = '';
     var pokelimit;
+    var totalPokemon;
+    var pokemonNames = [];
     var listItems = document.querySelector("#allListings");
     var detailsList = document.querySelector("#details");
-    pokelimit = document.querySelector('#pokeVal');
-    advice = document.querySelector('#limit');
-    var totalPokemon;
+    var pokelimit = document.querySelector('#pokeVal');
+    var advice = document.querySelector('#limit');
+    var displayPokemon = document.querySelector('#dspPoke');
+    var backBtn = document.querySelector('#back');
+    var SupriseBtn = document.querySelector('#pokeofday');
+    var overlay = document.querySelector('.overlay');
+    var searchBynameTxt = document.querySelector('#searchByname');
+    var datalist = document.querySelector("#datalist");
+    var nametxt = document.querySelector(".nametxt");
+    var inputFields = document.querySelector(".input-fields");
+    var showbyname = document.querySelector(".showbyname");
+    var showAll = document.querySelector(".showAll");
+    // var nextPage = document.querySelector(".next-page");
+    var retrievedData = localStorage.getItem("results");
+    var retrievedPokeData = JSON.parse(retrievedData);
+    var chunk = 10;
+    var incNum = 0;
 
-    pokelimit.onfocus = function(){
+    showbyname.onclick = function(){
+        inputFields.style.display = 'none';
+        nametxt.style.display = 'block';
+        showbyname.style.display = 'none';
+        showAll.style.display = 'block';
         clear();
-    } 
-
-    pokelimit.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-            catchemAll(pokelimit.value);
-        }
-    });
-    document.querySelector('#dspPoke').onclick = function(){
-        catchemAll(pokelimit.value);
-    }
-    document.querySelector('#back').onclick = function(){
-        document.querySelector("#back").style.visibility = 'hidden';
-        catchemAll(pokelimit.value);
-    }
-    document.querySelector('#pokeofday').onclick = function(){
-        pokemonOfDay('https://pokeapi.co/api/v2/pokemon?limit=100');
-    }
-    document.querySelector('.overlay').onclick = function(){
-        this.style.display = 'none';
     }
 
-    function clear(){
-        listItems.innerHTML = '';
-        detailsList.innerHTML = '';
-        document.querySelector("#back").style.visibility = 'hidden';
-        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br> TOTAL NUMBER OF POKEMON DATA STORED IS 964... <br> SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964"
+    // nextPage.onclick = function(){
+    //     incNum++;
+    //     showpage();
+    // }
+
+    showAll.onclick = function(){
+        incNum++;
+        createListing(retrievedPokeData);
     }
 
-    function catchemAll(lim){
-        str = '';
-        detailsList.innerHTML = '';
-        if(lim == '' && lim == 0){
-            advice.innerHTML = "<strong> <i> Jessie, James, and Meowth </i></strong><br> Don't act smart, You won't get what you looking for here, Enter number between the limits";
-        }
-        else if(lim < 965){
-            advice.innerHTML = "THERE YOU GO POKEMON MASTER,<strong> <i>  GOTTA CATCH EM ALL </i></strong>";
-            feturl = 'https://pokeapi.co/api/v2/pokemon?limit='+ lim;
-            fetAllPokemon(feturl);
-        }
-        else{
-            advice.innerHTML = "OOPS!! <br> GUESS WE RAN OUT OF POKEMON'S OVER HERE,<br> HERE A ADVICE TRY NUMBERS BETWEEN 1 - 695";
-        }
+    // function showpage(){
+    //     totalPokemon = retrievedPokeData;
+    //     var array1 = totalPokemon.splice(0, chunk); 
+    //     var array2 = totalPokemon.splice(0, chunk); 
+    //     var array3 = totalPokemon.splice(0, chunk); 
+    //     var array4 = totalPokemon.splice(0, chunk); 
+    //     var array5 = totalPokemon.splice(0, chunk); 
+    //     var array6 = totalPokemon.splice(0, chunk); 
+    //     var array7 = totalPokemon.splice(0, chunk); 
+    //     var array8 = totalPokemon.splice(0, chunk); 
+    //     var array9 = totalPokemon.splice(0, chunk); 
+    //     console.log(array9)
+    //     if(incNum == 1){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array1);
+    //     }
+    //     else if(incNum == 2){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array2);
+    //     }        
+    //     else if(incNum == 3){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array3);
+    //     }        
+    //     else if(incNum == 4){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array4);
+    //     }
+    //     else if(incNum == 5){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array5);
+    //     }
+    //     else if(incNum == 6){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array6);
+    //     }
+    //     else if(incNum == 7){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array7);
+    //     }
+    //     else if(incNum == 8){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array8);
+    //     }    
+    //     else if(incNum == 9){
+    //         nextPage.innerText = incNum;
+    //         showAllsection(array9);
+    //     }        
+    //     else{
+    //          nextPage.display.style = 'none'; 
+    //     }
+    // }
+
+    function showAllsection(arrayChunk){
+        showAll.style.display = 'none';
+        nametxt.style.display = 'none';
+        showbyname.style.display = 'block';
+        createListing(arrayChunk);
     }
-    
-    function fetAllPokemon(url){
+
+    window.onload = function(){
+        getAllpokemonData('https://pokeapi.co/api/v2/pokemon?limit=964');
+    };
+
+     function ac(value) {
+        var retrievedData = localStorage.getItem("results");
+        retrievedPokeData = JSON.parse(retrievedData);
+        var n = retrievedPokeData.length;     
+        datalist.innerHTML = ''; 
+        datalist.style.display = 'block';           
+         l=value.length; 
+        for (var i = 0; i<n; i++) { 
+         var retrivedName = retrievedPokeData[i].name;
+         if(((retrievedPokeData[i].name.toLowerCase()).indexOf(value.toLowerCase()))>-1) 
+            { 
+                var retrivedurl = retrievedPokeData[i].url;
+                var urlsubstrng = retrivedurl.split("/");
+                var retrivedId = urlsubstrng[urlsubstrng.length-2];
+                var node = document.createElement("li"); 
+                node.setAttribute('data-item',retrivedId)
+                var val = document.createTextNode(retrivedName); 
+                node.appendChild(val);
+                datalist.appendChild(node); 
+             } 
+         } 
+
+         var listingParent = document.getElementById('datalist').getElementsByTagName('li')
+           for(var i=0;i<listingParent.length;i++){
+                listingParent[i].addEventListener('click',function(e){
+                searchBynameTxt.value = this.innerText;
+                datalist.style.display = 'none';
+                var pokeid = this.getAttribute("data-item");
+                pokeid = parseInt(pokeid);
+                var imgPath1 = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeid +'.png'
+                seachtext ='<li><a href="" onclick=fetchPokemonData('+ pokeid +',event)><img class="lozad" data-src="'+ imgPath1 +'" src=""/></a><h3>'+ this.innerText +' </h3> </li>';
+                listItems.innerHTML = seachtext;
+                lazy();
+             });
+           }
+     } 
+
+    function getAllpokemonData(url){
         if(url){
             fetch(url)
             .then(function(response) {
@@ -62,9 +151,12 @@
                 // Read the response as json.
                 return response.json();
                 })
-            .then(function(responseAsJson) {
+            .then(function(allDAta) {
                 // Do stuff with the JSON.
-                createListing(responseAsJson);
+                var results = allDAta.results;
+                // console.log(results)
+                localStorage.setItem("results", JSON.stringify(results));
+                var storedNames = JSON.parse(localStorage.getItem("results"));
                 })
             .catch(function(error) {
                 document.write('Looks like there was a problem: \n', error);
@@ -72,10 +164,23 @@
         }
     }
 
+    SupriseBtn.onclick = function(){
+        pokemonOfDay('https://pokeapi.co/api/v2/pokemon?limit=100');
+    }
+    overlay.onclick = function(){
+        this.style.display = 'none';
+    }
+
+    function clear(){
+        listItems.innerHTML = '';
+        detailsList.innerHTML = '';
+        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br> TOTAL NUMBER OF POKEMON DATA STORED IS 964... <br> SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964"
+    }
+
     function fetchPokemonData(pid,e){
         e.preventDefault();
-        document.querySelector("#back").style.visibility = 'visible';
-        var feturl = totalPokemon[pid-1].url;
+        var feturl = retrievedPokeData[pid-1].url;
+        console.log(retrievedPokeData[pid]);
         fetch(feturl)
         .then(function(response) {
             if (!response.ok) {
@@ -104,21 +209,17 @@
                 return response.json();
                 })
             .then(function(responseAsJson1) {
-                // Do stuff with the JSON.
-                document.querySelector('.overlay').style.display = 'block';
-                document.querySelector("#back").style.visibility = 'hidden';
+                overlay.style.display = 'block';
                 detailsList.innerHTML = '';
-
-                // .style.display = 'block';
                 totalPokemon = responseAsJson1.results;
                 newInd = Math.floor((Math.random() * 100) + 1);
                 var pokemonName = responseAsJson1.results[newInd].name;
                 var pokeUrl = responseAsJson1.results[newInd].url;
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
-                imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
-                str1 = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a></li>';
-                document.querySelector('.pokedata').innerHTML = str1;
+                var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
+                var pokeOfdaystr = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a></li>';
+                document.querySelector('.pokedata').innerHTML = pokeOfdaystr;
                 lazy();
                 })
             .catch(function(error) {
@@ -127,32 +228,30 @@
         }
     }
 
-    function createListing(pokemonData){
-        if(pokemonData){
-            totalPokemon = pokemonData.results;
-            var myArr = [];
-            for (let index in totalPokemon){
-                randomNumber(myArr);
-                var newInd = myArr[index];
-                var pokemonName = totalPokemon[newInd].name;
-                var pokeUrl = totalPokemon[newInd].url;
+    function createListing(arrayChunk){
+        displayStr = '';
+        detailsList.innerHTML = '';
+            for (let index in arrayChunk){
+                var pokemonName = arrayChunk[index].name;
+                var pokeUrl = arrayChunk[index].url;
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
-                imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
-                str = str + '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a><h3>'+ pokemonName +' </h3> </li>';
+                var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
+                displayStr = displayStr + '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a><h3>'+ pokemonName +' </h3> </li>';
             }
-            listItems.innerHTML = str;
+            listItems.innerHTML = displayStr;
+            // nextPage.style.display = 'block';
             lazy();
-        }
     }
 
 
     function displayAbility(pokeDetails){
+        console.log(pokeDetails)
         var Pokename = pokeDetails.name;
         var ability = '';
         var Pokemove = '';
         var Ptype = '';
-        imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeDetails.id +'.png';
+        var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeDetails.id +'.png';
         for(let i in pokeDetails.abilities){
             PokeAb = pokeDetails.abilities[i].ability.name;
             ability = ability + '<p>'+PokeAb+'</p>';
@@ -169,27 +268,11 @@
         }
 
         listItems.innerHTML = '';
-        detailsList.innerHTML ='<div class="img-wrap"><img class="lozad" data-src="'+ imgPath +'" src=""/></div><h3>name :  '+ Pokename +' </h3><div class="detail-wrap"><div class="pability"><h4>Abilities</h4>'+ ability+'</div><div class="pheight"><h4>Height</h4><p>'+ pokeDetails.height+' </p></div><div class="pType"><h4>Type</h4>'+ Ptype +'</div><div class="pmove"><h4>Top Moves</h4>'+ Pokemove +'</div></div>';
+        detailsList.innerHTML ='<div class="img-wrap"><img class="lozad" data-src="'+ imgPath +'" src=""/><h3>name :  '+ Pokename +' </h3></div><div class="detail-wrap"><div class="pability"><h4 class="accordion">Abilities</h4><div class="desc">'+ ability+'</div></div><div class="pheight"><h4 class="accordion">Height</h4><div class="desc"><p>'+ pokeDetails.height+' </p></div></div><div class="pType"><h4 class="accordion">Type</h4><div class="desc">'+ Ptype +'</div></div><div class="pmove"><h4 class="accordion">Top Moves</h4><div class="desc">'+ Pokemove +'</div></div></div>';
         lazy();
+        accordian();
 
     };
-
-
-    function randomNumber(myArr){
-        if(myArr.length == 0){
-            var val = Math.floor(Math.random() * pokelimit.value);
-            myArr.push(val);
-        }
-        else{
-            val = Math.floor(Math.random() * pokelimit.value);
-            if(myArr.indexOf(val) == -1){
-                myArr.push(val);
-            }
-            else{
-                randomNumber(myArr);
-            }
-        }
-    }
     
     function lazy(){
     lozad('.lozad', {
@@ -204,3 +287,20 @@
     }    
 
     new Darkmode().showWidget();
+
+function accordian(){
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+}
