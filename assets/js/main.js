@@ -19,6 +19,7 @@
     var limit = 10;
     var evnum;
 
+
     showAll.onclick = function(){
         loadMore.style.display = 'block';
         displayStr = '';
@@ -32,6 +33,11 @@
     }
 
     window.onload = function(){
+        var stylesheet = document.styleSheets[1].ownerNode.getAttribute('href');
+        var date = new Date();
+        var time = date.getTime();
+        newStylesheet = stylesheet + '?' + time;
+        document.styleSheets[1].ownerNode.setAttribute('href',newStylesheet)
         getAllpokemonData('https://pokeapi.co/api/v2/pokemon?limit=964');
     };
 
