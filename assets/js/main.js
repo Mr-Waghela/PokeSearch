@@ -38,7 +38,25 @@
         var time = date.getTime();
         newStylesheet = stylesheet + '?' + time;
         document.styleSheets[1].ownerNode.setAttribute('href',newStylesheet)
+
+          var scrollTop = document.getElementById('scroll-totop');
+          window.addEventListener('scroll', () => {
+            var ypos = window.pageYOffset;
+            if(ypos >= 300){
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        })
+            scrollTop.addEventListener('click', function(){
+              window.scrollTo({
+                top:0,
+                left:0,
+                behaviour: 'smooth'
+              });
+            })
         getAllpokemonData('https://pokeapi.co/api/v2/pokemon?limit=964');
+
     };
 
      function ac(value) {
