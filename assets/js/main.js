@@ -5,99 +5,30 @@
     var listItems = document.querySelector("#allListings");
     var detailsList = document.querySelector("#details");
     var pokelimit = document.querySelector('#pokeVal');
-    var advice = document.querySelector('#limit');
     var displayPokemon = document.querySelector('#dspPoke');
-    var backBtn = document.querySelector('#back');
     var SupriseBtn = document.querySelector('#pokeofday');
     var overlay = document.querySelector('.overlay');
     var searchBynameTxt = document.querySelector('#searchByname');
     var datalist = document.querySelector("#datalist");
+    var loadMore = document.querySelector("#loadMore");
     var nametxt = document.querySelector(".nametxt");
     var inputFields = document.querySelector(".input-fields");
-    var showbyname = document.querySelector(".showbyname");
     var showAll = document.querySelector(".showAll");
-    // var nextPage = document.querySelector(".next-page");
     var retrievedData = localStorage.getItem("results");
     var retrievedPokeData = JSON.parse(retrievedData);
-    var chunk = 10;
-    var incNum = 0;
-
-    showbyname.onclick = function(){
-        inputFields.style.display = 'none';
-        nametxt.style.display = 'block';
-        showbyname.style.display = 'none';
-        showAll.style.display = 'block';
-        clear();
-    }
-
-    // nextPage.onclick = function(){
-    //     incNum++;
-    //     showpage();
-    // }
+    var limit = 10;
+    var evnum;
 
     showAll.onclick = function(){
-        incNum++;
-        createListing(retrievedPokeData);
+        loadMore.style.display = 'block';
+        displayStr = '';
+        detailsList.innerHTML = '';
+        createListing(retrievedPokeData,10);
     }
 
-    // function showpage(){
-    //     totalPokemon = retrievedPokeData;
-    //     var array1 = totalPokemon.splice(0, chunk); 
-    //     var array2 = totalPokemon.splice(0, chunk); 
-    //     var array3 = totalPokemon.splice(0, chunk); 
-    //     var array4 = totalPokemon.splice(0, chunk); 
-    //     var array5 = totalPokemon.splice(0, chunk); 
-    //     var array6 = totalPokemon.splice(0, chunk); 
-    //     var array7 = totalPokemon.splice(0, chunk); 
-    //     var array8 = totalPokemon.splice(0, chunk); 
-    //     var array9 = totalPokemon.splice(0, chunk); 
-    //     console.log(array9)
-    //     if(incNum == 1){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array1);
-    //     }
-    //     else if(incNum == 2){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array2);
-    //     }        
-    //     else if(incNum == 3){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array3);
-    //     }        
-    //     else if(incNum == 4){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array4);
-    //     }
-    //     else if(incNum == 5){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array5);
-    //     }
-    //     else if(incNum == 6){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array6);
-    //     }
-    //     else if(incNum == 7){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array7);
-    //     }
-    //     else if(incNum == 8){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array8);
-    //     }    
-    //     else if(incNum == 9){
-    //         nextPage.innerText = incNum;
-    //         showAllsection(array9);
-    //     }        
-    //     else{
-    //          nextPage.display.style = 'none'; 
-    //     }
-    // }
-
-    function showAllsection(arrayChunk){
-        showAll.style.display = 'none';
-        nametxt.style.display = 'none';
-        showbyname.style.display = 'block';
-        createListing(arrayChunk);
+    loadMore.onclick = function(){
+        limit = limit + 10;
+        createListing(retrievedPokeData,limit);
     }
 
     window.onload = function(){
@@ -105,6 +36,7 @@
     };
 
      function ac(value) {
+        loadMore.style.display = 'none';
         var retrievedData = localStorage.getItem("results");
         retrievedPokeData = JSON.parse(retrievedData);
         var n = retrievedPokeData.length;     
@@ -131,6 +63,7 @@
                 listingParent[i].addEventListener('click',function(e){
                 searchBynameTxt.value = this.innerText;
                 datalist.style.display = 'none';
+                clear();
                 var pokeid = this.getAttribute("data-item");
                 pokeid = parseInt(pokeid);
                 var imgPath1 = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeid +'.png'
@@ -154,7 +87,6 @@
             .then(function(allDAta) {
                 // Do stuff with the JSON.
                 var results = allDAta.results;
-                // console.log(results)
                 localStorage.setItem("results", JSON.stringify(results));
                 var storedNames = JSON.parse(localStorage.getItem("results"));
                 })
@@ -174,13 +106,12 @@
     function clear(){
         listItems.innerHTML = '';
         detailsList.innerHTML = '';
-        advice.innerHTML = "ALL THE RARE POKEMON ARE YET TO BE LISTED IN THE POKEDEX,<br> TOTAL NUMBER OF POKEMON DATA STORED IS 964... <br> SO DON'T BE <i>TEAM ROCKET</i> AND SEARCH BETWEEN 1-964"
     }
 
     function fetchPokemonData(pid,e){
+        loadMore.style.display = 'none';
         e.preventDefault();
         var feturl = retrievedPokeData[pid-1].url;
-        console.log(retrievedPokeData[pid]);
         fetch(feturl)
         .then(function(response) {
             if (!response.ok) {
@@ -228,29 +159,72 @@
         }
     }
 
-    function createListing(arrayChunk){
-        displayStr = '';
-        detailsList.innerHTML = '';
-            for (let index in arrayChunk){
-                var pokemonName = arrayChunk[index].name;
-                var pokeUrl = arrayChunk[index].url;
+    // function PokeEvolve(PokemonId){
+    //     fetch("https://pokeapi.co/api/v2/pokemon-species/"+PokemonId+"/")
+    //     .then(function(response) {
+    //         if (!response.ok) {
+    //             throw Error(response.statusText);
+    //         }
+    //         // Read the response as json.
+    //         return response.json();
+    //         })
+    //     .then(function(species) {
+    //         console.log(species.)
+    //             fetch(species.evolution_chain.url)
+    //             .then(function(response) {
+    //                 if (!response.ok) {
+    //                     throw Error(response.statusText);
+    //                 }
+    //                 // Read the response as json.
+    //                 return response.json();
+    //                 })
+    //             .then(function(evovle) {
+    //                 console.log(evovle)
+    //                 var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ PokemonId +'.png'
+    //                 detailsList.insertAdjacentHTML('beforeend', '<div class="evovle-title">Pokemon Evolution</div><div class="img-wrap"><img class="lozad" data-src="" src="'+ imgPath +'"/><div class="pname">'+evovle.chain.species.name+'<div></div>');
+    //                 console.log(evovle.chain.evolves_to[0])
+    //                 if (evovle.chain.evolves_to[0].length != 0) {
+    //                     var evolveId = PokemonId+1;
+    //                      var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ evolveId +'.png'
+    //                     detailsList.insertAdjacentHTML('beforeend', '<div class="img-wrap"><img class="lozad" data-src="" src="'+ imgPath +'"/><div class="pname">'+evovle.chain.evolves_to[0].species.name+'<div></div>');
+    //                      console.log(evovle.chain.evolves_to[0].evolves_to[0])
+    //                     if(evovle.chain.evolves_to[0].evolves_to[0].length != 0){
+    //                         var evolveId1 = evolveId+1;
+    //                         var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ evolveId1 +'.png'
+    //                         detailsList.insertAdjacentHTML('beforeend', '<div class="img-wrap"><img class="lozad" data-src="" src="'+ imgPath +'"/><div class="pname">'+evovle.chain.evolves_to[0].evolves_to[0].species.name+'<div></div>');
+    //                     }
+    //                 }
+    //             })
+    //             .catch(function(error) {
+    //                 document.write('Looks like there was a problem: \n', error);
+    //             });
+    //         })
+    //     .catch(function(error) {
+    //         document.write('Looks like there was a problem: \n', error);
+    //     });
+    // }
+
+    function createListing(arrayChunk,limit){
+            
+            for (let i = 0;i<limit;i++){
+                var pokemonName = arrayChunk[i].name;
+                var pokeUrl = arrayChunk[i].url;
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
                 var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
                 displayStr = displayStr + '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a><h3>'+ pokemonName +' </h3> </li>';
             }
             listItems.innerHTML = displayStr;
-            // nextPage.style.display = 'block';
             lazy();
     }
 
 
     function displayAbility(pokeDetails){
-        console.log(pokeDetails)
         var Pokename = pokeDetails.name;
         var ability = '';
         var Pokemove = '';
         var Ptype = '';
+        var statedata = '';
         var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeDetails.id +'.png';
         for(let i in pokeDetails.abilities){
             PokeAb = pokeDetails.abilities[i].ability.name;
@@ -265,10 +239,16 @@
         for(let k in pokeDetails.types){
             Poketype = pokeDetails.types[k].type.name;
             Ptype = Ptype + '<p>'+Poketype+'</p>';
+        }        
+        for(let l in pokeDetails.stats){
+            stateNum = pokeDetails.stats[l].base_stat;
+            stateName = pokeDetails.stats[l].stat.name;
+            statedata = statedata + '<p>'+stateName+' : '+stateNum+'</p>';
         }
 
         listItems.innerHTML = '';
-        detailsList.innerHTML ='<div class="img-wrap"><img class="lozad" data-src="'+ imgPath +'" src=""/><h3>name :  '+ Pokename +' </h3></div><div class="detail-wrap"><div class="pability"><h4 class="accordion">Abilities</h4><div class="desc">'+ ability+'</div></div><div class="pheight"><h4 class="accordion">Height</h4><div class="desc"><p>'+ pokeDetails.height+' </p></div></div><div class="pType"><h4 class="accordion">Type</h4><div class="desc">'+ Ptype +'</div></div><div class="pmove"><h4 class="accordion">Top Moves</h4><div class="desc">'+ Pokemove +'</div></div></div>';
+        detailsList.innerHTML ='<div class="img-wrap"><img class="lozad" data-src="'+ imgPath +'" src=""/><h3>name :  '+ Pokename +' </h3></div><div class="detail-wrap"><div class="pability"><h4 class="accordion">Abilities</h4><div class="desc">'+ ability+'</div></div><div class="pheight"><h4 class="accordion">Height</h4><div class="desc"><p>'+ pokeDetails.height+' </p></div></div><div class="pType"><h4 class="accordion">Type</h4><div class="desc">'+ Ptype +'</div></div><div class="pmove"><h4 class="accordion">Top Moves</h4><div class="desc">'+ Pokemove +'</div></div><div class="pstat"><h4 class="accordion">Stats</h4><div class="desc">'+ statedata +'</div></div></div>';
+        // PokeEvolve(pokeDetails.id);
         lazy();
         accordian();
 
