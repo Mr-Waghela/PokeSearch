@@ -24,6 +24,13 @@
         loadMore.style.display = 'block';
         displayStr = '';
         detailsList.innerHTML = '';
+        setTimeout(function(){ 
+            window.scrollTo({
+                top:400,
+                left:0,
+                behaviour: 'smooth'
+            });
+        }, 1000);
         createListing(retrievedPokeData,10);
     }
 
@@ -39,8 +46,8 @@
         newStylesheet = stylesheet + '?' + time;
         document.styleSheets[1].ownerNode.setAttribute('href',newStylesheet)
 
-          var scrollTop = document.getElementById('scroll-totop');
-          window.addEventListener('scroll', () => {
+        var scrollTop = document.getElementById('scroll-totop');
+        window.addEventListener('scroll', () => {
             var ypos = window.pageYOffset;
             if(ypos >= 300){
                 scrollTop.classList.add('visible');
@@ -48,13 +55,13 @@
                 scrollTop.classList.remove('visible');
             }
         })
-            scrollTop.addEventListener('click', function(){
-              window.scrollTo({
-                top:0,
-                left:0,
-                behaviour: 'smooth'
-              });
-            })
+        scrollTop.addEventListener('click', function(){
+          window.scrollTo({
+            top:0,
+            left:0,
+            behaviour: 'smooth'
+          });
+        })
         getAllpokemonData('https://pokeapi.co/api/v2/pokemon?limit=964');
 
     };
@@ -272,7 +279,13 @@
 
         listItems.innerHTML = '';
         detailsList.innerHTML ='<div class="img-wrap"><img class="lozad" data-src="'+ imgPath +'" src=""/><h3>name :  '+ Pokename +' </h3></div><div class="detail-wrap"><div class="pability"><h4 class="accordion">Abilities</h4><div class="desc">'+ ability+'</div></div><div class="pheight"><h4 class="accordion">Height</h4><div class="desc"><p>'+ pokeDetails.height+' </p></div></div><div class="pType"><h4 class="accordion">Type</h4><div class="desc">'+ Ptype +'</div></div><div class="pmove"><h4 class="accordion">Top Moves</h4><div class="desc">'+ Pokemove +'</div></div><div class="pstat"><h4 class="accordion">Stats</h4><div class="desc">'+ statedata +'</div></div></div>';
-        // PokeEvolve(pokeDetails.id);
+        setTimeout(function(){ 
+            window.scrollTo({
+                top:400,
+                left:0,
+                behaviour: 'smooth'
+            });
+        }, 1000);
         lazy();
         accordian();
 
@@ -292,19 +305,19 @@
 
     new Darkmode().showWidget();
 
-function accordian(){
-var acc = document.getElementsByClassName("accordion");
-var i;
+    function accordian(){
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
     }
-  });
-}
-}
