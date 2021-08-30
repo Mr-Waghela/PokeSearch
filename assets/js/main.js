@@ -72,22 +72,26 @@
         retrievedPokeData = JSON.parse(retrievedData);
         var n = retrievedPokeData.length;     
         datalist.innerHTML = ''; 
-        datalist.style.display = 'block';           
-         l=value.length; 
-        for (var i = 0; i<n; i++) { 
-         var retrivedName = retrievedPokeData[i].name;
-         if(((retrievedPokeData[i].name.toLowerCase()).indexOf(value.toLowerCase()))>-1) 
-            { 
-                var retrivedurl = retrievedPokeData[i].url;
-                var urlsubstrng = retrivedurl.split("/");
-                var retrivedId = urlsubstrng[urlsubstrng.length-2];
-                var node = document.createElement("li"); 
-                node.setAttribute('data-item',retrivedId)
-                var val = document.createTextNode(retrivedName); 
-                node.appendChild(val);
-                datalist.appendChild(node); 
-             } 
-         } 
+        l=value.length; 
+        if(l != 0){
+            datalist.style.display = 'block';           
+            for (var i = 0; i<n; i++) { 
+            var retrivedName = retrievedPokeData[i].name;
+            if(((retrievedPokeData[i].name.toLowerCase()).indexOf(value.toLowerCase()))>-1) 
+                { 
+                    var retrivedurl = retrievedPokeData[i].url;
+                    var urlsubstrng = retrivedurl.split("/");
+                    var retrivedId = urlsubstrng[urlsubstrng.length-2];
+                    var node = document.createElement("li"); 
+                    node.setAttribute('data-item',retrivedId)
+                    var val = document.createTextNode(retrivedName); 
+                    node.appendChild(val);
+                    datalist.appendChild(node); 
+                } 
+            } 
+        }else{
+            datalist.style.display = 'none';
+        };
 
          var listingParent = document.getElementById('datalist').getElementsByTagName('li')
            for(var i=0;i<listingParent.length;i++){
@@ -97,7 +101,7 @@
                 clear();
                 var pokeid = this.getAttribute("data-item");
                 pokeid = parseInt(pokeid);
-                var imgPath1 = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeid +'.png'
+                var imgPath1 = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ pokeid +'.png'
                 seachtext ='<li><a href="" onclick=fetchPokemonData('+ pokeid +',event)><img class="lozad" data-src="'+ imgPath1 +'" src=""/></a><h3>'+ this.innerText +' </h3> </li>';
                 listItems.innerHTML = seachtext;
                 lazy();
@@ -179,7 +183,7 @@
                 var pokeUrl = responseAsJson1.results[newInd].url;
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
-                var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
+                var imgPath = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ pokeID +'.png'
                 var pokeOfdaystr = '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a></li>';
                 document.querySelector('.pokedata').innerHTML = pokeOfdaystr;
                 lazy();
@@ -189,60 +193,13 @@
             });
         }
     }
-
-    // function PokeEvolve(PokemonId){
-    //     fetch("https://pokeapi.co/api/v2/pokemon-species/"+PokemonId+"/")
-    //     .then(function(response) {
-    //         if (!response.ok) {
-    //             throw Error(response.statusText);
-    //         }
-    //         // Read the response as json.
-    //         return response.json();
-    //         })
-    //     .then(function(species) {
-    //         console.log(species.)
-    //             fetch(species.evolution_chain.url)
-    //             .then(function(response) {
-    //                 if (!response.ok) {
-    //                     throw Error(response.statusText);
-    //                 }
-    //                 // Read the response as json.
-    //                 return response.json();
-    //                 })
-    //             .then(function(evovle) {
-    //                 console.log(evovle)
-    //                 var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ PokemonId +'.png'
-    //                 detailsList.insertAdjacentHTML('beforeend', '<div class="evovle-title">Pokemon Evolution</div><div class="img-wrap"><img class="lozad" data-src="" src="'+ imgPath +'"/><div class="pname">'+evovle.chain.species.name+'<div></div>');
-    //                 console.log(evovle.chain.evolves_to[0])
-    //                 if (evovle.chain.evolves_to[0].length != 0) {
-    //                     var evolveId = PokemonId+1;
-    //                      var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ evolveId +'.png'
-    //                     detailsList.insertAdjacentHTML('beforeend', '<div class="img-wrap"><img class="lozad" data-src="" src="'+ imgPath +'"/><div class="pname">'+evovle.chain.evolves_to[0].species.name+'<div></div>');
-    //                      console.log(evovle.chain.evolves_to[0].evolves_to[0])
-    //                     if(evovle.chain.evolves_to[0].evolves_to[0].length != 0){
-    //                         var evolveId1 = evolveId+1;
-    //                         var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ evolveId1 +'.png'
-    //                         detailsList.insertAdjacentHTML('beforeend', '<div class="img-wrap"><img class="lozad" data-src="" src="'+ imgPath +'"/><div class="pname">'+evovle.chain.evolves_to[0].evolves_to[0].species.name+'<div></div>');
-    //                     }
-    //                 }
-    //             })
-    //             .catch(function(error) {
-    //                 document.write('Looks like there was a problem: \n', error);
-    //             });
-    //         })
-    //     .catch(function(error) {
-    //         document.write('Looks like there was a problem: \n', error);
-    //     });
-    // }
-
     function createListing(arrayChunk,limit){
-            
             for (let i = 0;i<limit;i++){
                 var pokemonName = arrayChunk[i].name;
                 var pokeUrl = arrayChunk[i].url;
                 var res = pokeUrl.split("/");
                 var pokeID = res[res.length-2];
-                var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeID +'.png'
+                var imgPath = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ pokeID +'.png'
                 displayStr = displayStr + '<li><a href="" onclick=fetchPokemonData('+ pokeID +',event)><img class="lozad" data-src="'+ imgPath +'" src=""/></a><h3>'+ pokemonName +' </h3> </li>';
             }
             listItems.innerHTML = displayStr;
@@ -256,7 +213,7 @@
         var Pokemove = '';
         var Ptype = '';
         var statedata = '';
-        var imgPath = 'https://pokeres.bastionbot.org/images/pokemon/'+ pokeDetails.id +'.png';
+        var imgPath = pokeDetails['sprites']['front_default'];
         for(let i in pokeDetails.abilities){
             PokeAb = pokeDetails.abilities[i].ability.name;
             ability = ability + '<p>'+PokeAb+'</p>';
@@ -315,8 +272,10 @@
             var panel = this.nextElementSibling;
             if (panel.style.display === "block") {
               panel.style.display = "none";
+              panel.style.opacity = "0";
             } else {
               panel.style.display = "block";
+              panel.style.opacity = "1";
             }
           });
         }

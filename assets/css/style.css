@@ -10,30 +10,30 @@ input[type=number] {-moz-appearance: textfield;}
 header{display: flex;flex-wrap: wrap;justify-content: space-between;height: 60px;padding: 0 20px;align-items: center;margin-bottom: 20px}
 .wrapper{display: flex;flex-direction: column;justify-content: space-between;;min-height: 100%}
 .container{max-width: 1028px;margin: 0 auto;padding: 0 20px;position: relative;width: 100%}
-.logo {text-align: center;position: relative;}
-.logo a{background: url(../images/logo.png) center no-repeat;background-size: cover;height: 50px;width: 50px;display: inline-block;color: transparent;}
+.logo {text-align: center;position: relative;display: flex;align-items: center;justify-content: center;color: #313131;}
+.logo a{background: url(../images/logo.png) center no-repeat;background-size: cover;height: 50px;width: 50px;display: inline-block;color: transparent;margin-right: 20px;}
 .inout,.display-all{width: 100%}
 .inout-border {width: 0;height: 0;border-left: 50vw solid transparent;border-right: 50vw solid transparent;border-bottom: 2vw solid #fff;position: absolute;right: 0;bottom: 0;}
 .inout-border.left {border-bottom: 1vw solid #fff;left: 0;}
-.heading{font-size: 4rem;color: #919191;margin: 20px;font-weight: normal;letter-spacing: 3px}
+.heading{font-size: 4rem;color: #333;margin: 20px;font-weight: normal;letter-spacing: 3px}
 .inout{background: #313131;padding: 50px 0;position: relative;}
-.inout-wrap{display: flex;flex-wrap: wrap;justify-content: space-between;}
+.inout-wrap{display: flex;flex-wrap: wrap;justify-content: center;flex-direction: column;align-content: center;}
 .inout-wrap p{font-size: 1.8rem;color: #fff;width: 100%;}
 .input-fields{position: relative;margin: 0 50px 20px}
 #pokeVal,#searchByname{height: 30px;width: 100%;outline: none;padding: 20px 30px 20px 10px;position: relative;color: #e00712;font-weight: bold;}
 #searchByname:focus {width: 100%;transition: 1s}
-#dspPoke{position: absolute;right: 10px;top: 50%;height: 30px;line-height: 40px;transform: translateY(-50%);}
+#dspPoke{position: absolute;right: 10px;top: 50%;transform: translateY(-50%);}
 .btn-wrap{display: block;text-align: center;}
 .display-all{position: relative;margin-top: 20px;padding-bottom: 60px}
 #allListings{display: flex;justify-content: space-evenly;flex-wrap: wrap;width: 100%}
-#allListings a{display: inline-block;}
+#allListings a{display: block;text-align: center;}
 #allListings li{width: 24%;margin-top: 20px;}
 #allListings li:hover{transform: scale(1.1);transition: .2s}
 #allListings h3{font-size: 1.8rem;line-height: 1.2;color: rgb(47, 46, 46);text-align: center;text-transform: uppercase;}
-img{width: 100%;height: auto;}
 .advice{margin-bottom: 20px;font-size: 2rem;min-height: 54px;text-transform: capitalize;}
-#details{display: flex;justify-content: space-around;flex-wrap: wrap;padding-bottom: 50px;text-transform: capitalize;}
-#details .img-wrap{width: 30%;overflow: hidden;}
+#details{display: flex;justify-content: center;flex-wrap: wrap;padding-bottom: 50px;text-transform: capitalize;flex-direction: column;align-items: center;}
+#details .img-wrap{width: 30%;overflow: hidden;text-align: center;}
+#details .img-wrap img{height: 150px;width: 150px;}
 #details h3{font-size: 3rem;line-height: 1.5;text-transform: uppercase;width: 100%;text-align: center;}
 .evolve-wrap{display: flex;justify-content: space-between;}
 .evolve-wrap img-wrap{width: 30%}
@@ -43,10 +43,10 @@ img{width: 100%;height: auto;}
 #back{display: inline-block;visibility: hidden;cursor: pointer;}
 .overlay{position: fixed;left: 0;right: 0;top: 0;bottom: 0;background: #000;display: none;z-index: 10}
 .overlay p{font-size: 2rem;color: rgb(175, 175, 41);text-align: center;padding-top: 10%;}
-.pokedata{max-height: 400px;max-width: 400px;background-color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);opacity: 1;border-radius: 50%}
+.pokedata{max-height: 400px;max-width: 400px;background-color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);opacity: 1;border-radius: 50%;height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;}
 .fixed-pointer{width: 100px;position: fixed;right: 0;bottom: 65px;text-align: center;z-index: 10;color: #000;bottom: 90px}
-.detail-wrap{display: flex;flex-wrap: wrap;justify-content: space-evenly;width: 65%}
-#details h4{font-size: 2rem;padding: 20px 10px;background: #30a7d7;color: #fff;border-radius: 3px}
+.detail-wrap{display: flex;flex-wrap: wrap;justify-content: space-evenly;width: 45%;margin-top: 20px;}
+#details h4{font-size: 1.8rem;padding: 10px;background: #e00712;color: #fff;border-radius: 3px}
 #details p{padding:10px;background: #dddddd;border-bottom: 1px solid #fff;color: #000}
 .darkmode--activated .dark{display: none}
 .darkmode--activated .light{display: block;}
@@ -70,9 +70,7 @@ img{width: 100%;height: auto;}
 .txt-effect:focus ~ .focus-border i:before,
 .txt-effect:focus ~ .focus-border i:after{height: 100%; transition: 0.2s;}
 .txt-effect:focus ~ .focus-border i:after{transition-delay: 0.4s;}
-
-
-.pokedata img{animation: pulse 1.5s infinite ease-in-out alternate;}
+.pokedata img{animation: pulse 1.5s infinite ease-in-out alternate;height: 200px;width: 200px;}
 .darkmode--activated .fixed-pointer{color: #fff}
 .darkmode--activated .bar:before {background-color: #fff;}
 .darkmode--activated #pokeofday div,.darkmode--activated #pokeofday:before{color: #fff}
@@ -87,16 +85,17 @@ footer{position: relative;width: 100%}
 .f-top{background: #e00712;height: 30px;border-bottom: 5px solid #1d1d1b;border-top: 1px solid #dddddd}
 .f-bottom{background: #fff;height: 30px;border-bottom: 1px solid #dddddd;border-top: 5px solid #1d1d1b}
 
-.nametxt{position: relative;text-align: left;width: 40%;border-radius: 5px;}
+.nametxt{position: relative;text-align: left;width: 40%;border-radius: 5px;height: 44px;}
 
-.instr{width: 45%}
-.instr p{height: 22px;padding-right: 30px}
+.instr{display: flex;align-items: center;}
+.instr p{text-transform: uppercase;line-height: 1.6;text-align: center;margin-bottom: 20px;}
 
 #datalist{display: block;position: absolute;left: 0;right: 0;max-height: 210px;overflow: hidden;z-index: 5;}
 #datalist li{border-bottom: 1px solid #dddddd;width: 100%;color: #999;font-size: 1.6rem;display: block;height: 35px;line-height: 35px;cursor: pointer;padding: 0 10px;background-color: #fff}
 
 .input-fields{display: none}
-.showAll,.showbyname{font-size: 1.6rem;color: #fff;cursor: pointer;text-align: center;position: relative;width: 40%;background: #4dad5b;padding: 20px;font-weight: normal;border-radius: 5px;margin-top: 20px;display: block}
+.showAll,.showbyname{font-size: 1.6rem;color: #fff;cursor: pointer;text-align: center;position: relative;width: 40%;background: #313131;padding: 20px;font-weight: normal;border-radius: 5px;margin: 20px auto 0;display: block;border: 5px solid #e00712;transition: -webkit-clip-path 0.6s linear;transition: clip-path 0.6s linear;transition: clip-path 0.6s linear, -webkit-clip-path 0.6s linear;-webkit-clip-path: polygon(calc(0% + 5px) calc(0% + 5px), calc(100% - 5px) calc(0% + 5px), calc(100% - 5px) calc(100% - 5px), calc(0% + 5px) calc(100% - 5px));clip-path: polygon(calc(0% + 5px) calc(0% + 5px), calc(100% - 5px) calc(0% + 5px), calc(100% - 5px) calc(100% - 5px), calc(0% + 5px) calc(100% - 5px));}
+.showAll:hover,.showbyname:hover {-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
 .darkmode--activated .showAll,.darkmode--activated .showbyname{color: #fff;border-color: #fff}
 .showbyname{display: none}
 .next-page{display: none;height: 30px;width: 60px;cursor: pointer;text-align: left;color: #fff;line-height: 30px;margin-left: 10px;margin-top: 20px;background:#e00712 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOBAMAAADgeEClAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAACdQTFRF////////////AAAA////////////////////////////////////YB6q1QAAAA10Uk5TMI8QAJD/z9C/76BwQA4xvQUAAABCSURBVHicDcahDYAwAEXBh+wcFbWEZ7FsQAhBdoeOwgSdgf345nIsVTl6aFeVbXQxxRRtdygnru/E8kgiiXwz7OoP3mgOuSxsgKMAAAAASUVORK5CYII=') 45px center no-repeat;padding-left: 10px}
@@ -104,7 +103,7 @@ footer{position: relative;width: 100%}
 .accordion{margin-bottom: 0;padding: 20px;border-bottom:1px solid #dddddd;cursor: pointer;position: relative;}
 .accordion:after{content: '+';position: absolute;right: 10px;top: 50%;transform: translateY(-50%);font-size: 15px;}
 .active:after{content: '-'}
-.desc{display: none;}
+.desc{display: none;transition: 1s;opacity: 0;}
 .desc p{margin-left: 10px;}
 .active{display: block;border: none}
 .active ~ .desc{border-bottom: 1px solid #dddddd}
@@ -157,7 +156,9 @@ footer{position: relative;width: 100%}
 	.fixed-pointer{width: 35px}
 	.darkmode-toggle,.darkmode-layer--button{right: 5px !important;}
 	#details .img-wrap,.detail-wrap{width: 100%}
-	.showAll{width: 60%}
+	.showAll{width: 100%}
+	.inout-wrap p{text-align: center;}
 	.instr{width: 100%;margin-top: 20px}
+	.pokedata{max-width: 250px;max-height: 250px;}
 
 }

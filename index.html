@@ -15,14 +15,13 @@
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-n.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/common.css">
-        //comment to test
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
         <div class="wrapper">
             <div id="scroll-totop" class="scroll-to-top"></div>
             <header>
-                <h1 class="logo"><a href="https://chirag7594.github.io/Pokedex/">Pokédex</a></h1>
+                <h1 class="logo"><a href="https://chirag-waghela.in/">Pokédex</a>Pokédex</h1>
                 <div class="btn-wrap">
                       <button data-hover="Lets do this!" id="pokeofday"><div>Suprise Me!</div></button>
                 </div>
@@ -39,14 +38,15 @@
                 </div>
             </div>
                 <section class="main">
-                    <h1 class="heading">Pokédex</h1>
                     <div class="inout">
                         <div class="inout-border"></div>
                         <div class="container"> 
-                            <div class="inout-wrap">    
-                                <p>Name</p>
+                            <div class="inout-wrap">  
+                                <div class="instr"> 
+                                    <p>Gotta catch 'em all!</p>
+                                </div>    
                                 <div class="nametxt">
-                                        <input class="txt-effect" type="text" placeholder="" onkeyup="ac(this.value)" id="searchByname" >
+                                        <input class="txt-effect" type="text" placeholder="Search your favourite here!!" onkeyup="ac(this.value)" id="searchByname">
                                         <span class="focus-border">
                                             <i></i>
                                         </span>
@@ -55,9 +55,6 @@
                                         </div>
                                     <ul id="datalist"></ul>
                                 </div> 
-                                <div class="instr"> 
-                                    <p>Search for a Pokémon by name or Try listing them all</p>
-                                </div>  
                             </div>
                         </div>
                     </div>
@@ -80,6 +77,6 @@
         </div>
         <script src="assets/js/lozad.js"></script>        
         <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-        <script src="assets/js/main1.js" async defer></script>
+        <script src="assets/js/main.js" async defer></script>
     </body>
 </html>
